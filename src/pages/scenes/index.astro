@@ -1,18 +1,17 @@
 ---
-// Chemin : src/pages/scenes/scenes.astro
-// On remonte de DEUX niveaux : un pour sortir de 'scenes', un pour sortir de 'pages'
+// Chemin : src/pages/scenes/index.astro
 import Layout from '../../layouts/Layout.astro';
 
 const scenes = [
   { 
     id: 'constellation', 
     nom: 'Scène 1 - La Constellation', 
-    image: '/image25.webp' 
+    image: '/scene1.webp' 
   },
   { 
     id: 'studio', 
     nom: 'Scène 2 - Le Studio', 
-    image: '/copilot_20251130_2055311.webp' 
+    image: '/scene2.webp' 
   }
 ];
 ---
@@ -51,4 +50,18 @@ const scenes = [
 
     </div>
   </main>
+
+  <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
+       <img src="/imagefooter1.webp" alt="Fédération Française de Danse" class="h-16 md:h-20 w-auto object-contain" />
+       <img src="/imagefooter2.webp" alt="Territoire de Belfort" class="h-12 md:h-16 w-auto object-contain" />
+       <div class="flex items-center gap-4">
+         <img src="/logodark.webp" alt="Logo Flying Tap Fest" class="h-16 md:h-18 w-auto" />
+       </div>
+    </div>
+  </footer>
 </Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+</style>
