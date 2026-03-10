@@ -1,10 +1,151 @@
 ---
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
+import Header from '../assets/components/Header.astro';
+import { getArtistesSortedByName } from '../../backend/backend.mjs';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Récupération des données dynamiques depuis PocketBase
+const artistes = await getArtistesSortedByName();
+
+// On double la liste pour l'effet de défilement infini fluide des noms
+const loopArtistes = [...artistes, ...artistes];
 ---
 
-<Layout>
-	<h1>Welcome to Astro!</h1>
+<Layout title="Flying Tap Fest 2026 | Accueil">
+  <main class="bg-[#243B55]">
+    
+    <section class="relative w-full h-[60vh] overflow-hidden">
+      <img 
+        src="/copilot_20251130_2055311.webp" 
+        class="w-full h-full object-cover" 
+        alt="Danseurs de claquettes au crépuscule" 
+      />
+      <div class="absolute inset-0 bg-[#243B55]/20 pointer-events-none"></div>
+    </section>
+
+    <section class="flex flex-col items-center text-center space-y-6 py-16 px-4">
+      <div class="space-y-4">
+        <p id="countdown" class="text-[#E9DCC9] text-7xl uppercase tracking-widest font-sans font-bold mx-12">
+          00j 00h 00m 00s
+        </p>
+        <p class="text-white text-lg md:text-xl font-extralight uppercase tracking-[0.2em]">
+          Soit les 6 et 7 Juin 2026
+        </p>
+      </div>
+      
+      <a href="/billetterie" class="bg-[#E9DCC9] text-[#243B55] py-5 px-14 rounded-md shadow-xl text-4xl md:text-6xl transition-transform hover:scale-105 inline-block mt-8" style="font-family: 'Pacifico', cursive;">
+        Billetterie
+      </a>
+    </section>
+
+    <section class="py-16 bg-[#243B55] overflow-hidden">
+      
+      <div class="relative w-full border-y border-[#E9DCC9]/20 py-10 mb-16">
+        <div class="flex whitespace-nowrap animate-ticker">
+          {loopArtistes.map((artiste) => (
+            <span class="text-white text-4xl md:text-7xl uppercase tracking-widest font-sans font-bold mx-12">
+              {artiste.nom} —
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-16">
+          {artistes.slice(0, 6).map((artiste) => (
+            <div class="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[#E9DCC9] shadow-2xl transition-transform hover:scale-110">
+               <img 
+                 src={`http://127.0.0.1:8090/api/files/${artiste.collectionId}/${artiste.id}/${artiste.PhotoPrincipale}`} 
+                 class="w-full h-full object-cover" 
+                 alt={artiste.nom} 
+               />
+            </div>
+          ))}
+        </div>
+
+        <a href="/programmation" class="bg-[#E9DCC9] text-[#243B55] py-5 px-14 rounded-md shadow-xl text-4xl md:text-6xl transition-transform hover:scale-105 inline-block" style="font-family: 'Pacifico', cursive;">
+          Programme
+        </a>
+      </div>
+    </section>
+
+    <section class="w-full overflow-hidden border-y-4 border-[#E9DCC9]/10">
+      <img src="/image25.webp" class="w-full h-auto object-cover max-h-[500px]" alt="Foule en festival de nuit" />
+    </section>
+
+    <section class="flex flex-col items-center text-center space-y-10 py-20 px-6 max-w-5xl mx-auto">
+      <h2 class="text-[#E9DCC9] text-5xl md:text-7xl" style="font-family: 'Pacifico', cursive;">
+        Les infos pratiques
+      </h2>
+      <div class="text-white text-base md:text-lg leading-relaxed font-light text-left space-y-6 max-w-3xl font-sans">
+        <p>Le Flying Tap Fest vous ouvre ses portes au cœur du site naturel du Malsaucy, pour une première édition dédiée à la danse, au mouvement et à la créativité.</p>
+        <p>Parking gratuit sur place, espace vélo sécurisé, restauration locale et zones chill pour admirer les constellations.</p>
+      </div>
+      <a href="/infos" class="bg-[#E9DCC9] text-[#243B55] py-4 px-10 rounded-md shadow-lg text-2xl md:text-3xl transition-transform hover:scale-105 inline-block font-bold uppercase tracking-widest font-sans">
+        Plus d'informations
+      </a>
+    </section>
+
+    <footer class="bg-[#E9DCC9] py-10 px-6 border-t border-[#243B55]/10">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-around items-center gap-10">
+         
+         <div class="flex items-center">
+           <img src="/imagefooter1.webp" alt="Fédération Française de Danse" class="h-16 md:h-20 w-auto object-contain" />
+         </div>
+
+         <div class="flex items-center">
+           <img src="/imagefooter2.webp" alt="Territoire de Belfort" class="h-12 md:h-16 w-auto object-contain" />
+         </div>
+
+         <div class="flex items-center gap-4">
+           <img src="/logodark.webp" alt="Flying Tap Fest" class="h-14 md:h-16 w-auto" />
+          
+         </div>
+
+      </div>
+    </footer>
+
+  </main>
 </Layout>
+
+<script>
+  // SCRIPT DU COMPTE À REBOURS
+  function startCountdown() {
+    const target = new Date("June 6, 2026 00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = target - now;
+      const countdownEl = document.getElementById("countdown");
+      if (!countdownEl) return;
+
+      if (diff <= 0) {
+        countdownEl.innerText = "C'EST PARTI !";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      countdownEl.innerText = `${days}j ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+    }, 1000);
+  }
+  startCountdown();
+</script>
+
+<style>
+  /* ANIMATION DU TICKER NOMS */
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-ticker {
+    display: flex;
+    width: max-content;
+    animation: ticker 40s linear infinite;
+  }
+  .animate-ticker:hover {
+    animation-play-state: paused;
+  }
+</style>

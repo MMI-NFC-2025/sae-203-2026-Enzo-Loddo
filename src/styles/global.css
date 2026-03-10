@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* Configuration des couleurs pour le design "Le Sillon" */
+@theme {
+  --color-sillon-dark: #111827;
+  --color-sillon-orange: #F59E0B;
+  --color-sillon-pink: #D946EF;
+  --color-sillon-purple: #7E22CE;
+  
+  --background-image-gradient-sillon: linear-gradient(to right, #F59E0B, #D946EF, #7E22CE);
+}
