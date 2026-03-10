@@ -1,0 +1,67 @@
+---
+// src/pages/scenes.astro
+// On ne remonte que d'un niveau (../) car on est dans src/pages/
+import Layout from '../../layouts/Layout.astro';
+
+// DONNÉES EN DUR
+const scenes = [
+  { 
+    id: 'constellation', 
+    nom: 'Scène 1 - La Constellation', 
+    image: '/image25.webp' 
+  },
+  { 
+    id: 'studio', 
+    nom: 'Scène 2 - Le Studio', 
+    image: '/copilot_20251130_2055311.webp' 
+  }
+];
+---
+
+<Layout title="Les Scènes | Flying Tap Fest">
+  <main class="bg-[#243B55] min-h-screen pt-32 pb-20 px-6 md:px-12">
+    
+    <div class="max-w-4xl mx-auto w-full">
+      
+      <h1 class="text-[#E9DCC9] text-7xl md:text-9xl text-center mb-16" style="font-family: 'Pacifico', cursive;">
+        Scènes
+      </h1>
+
+      <div class="flex flex-col gap-12 md:gap-16">
+        {scenes.map((scene) => (
+          <a 
+            href={`/scenes/${scene.id}`} 
+            class="group block bg-[#E9DCC9] rounded-sm overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-2"
+          >
+            <div class="aspect-video md:aspect-[21/9] overflow-hidden bg-slate-800">
+              <img 
+                src={scene.image} 
+                alt={scene.nom} 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+
+            <div class="p-6 md:p-10 border-t-4 border-[#243B55]/10">
+              <h2 class="text-[#243B55] text-4xl md:text-5xl" style="font-family: 'Pacifico', cursive;">
+                {scene.nom}
+              </h2>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
+       <img src="/imagefooter1.webp" alt="FFD" class="h-16 md:h-20 w-auto object-contain" />
+       <img src="/imagefooter2.webp" alt="Belfort" class="h-12 md:h-16 w-auto object-contain" />
+       <img src="/logodark.webp" alt="Logo" class="h-16 md:h-18 w-auto" />
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+</style>
