@@ -1,9 +1,8 @@
 ---
-// src/pages/scenes.astro
-// On ne remonte que d'un niveau (../) car on est dans src/pages/
+// Chemin : src/pages/scenes/scenes.astro
+// On remonte de DEUX niveaux : un pour sortir de 'scenes', un pour sortir de 'pages'
 import Layout from '../../layouts/Layout.astro';
 
-// DONNÉES EN DUR
 const scenes = [
   { 
     id: 'constellation', 
@@ -52,16 +51,4 @@ const scenes = [
 
     </div>
   </main>
-
-  <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
-       <img src="/imagefooter1.webp" alt="FFD" class="h-16 md:h-20 w-auto object-contain" />
-       <img src="/imagefooter2.webp" alt="Belfort" class="h-12 md:h-16 w-auto object-contain" />
-       <img src="/logodark.webp" alt="Logo" class="h-16 md:h-18 w-auto" />
-    </div>
-  </footer>
 </Layout>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-</style>
