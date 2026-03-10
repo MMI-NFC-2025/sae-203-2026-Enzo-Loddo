@@ -3,12 +3,9 @@
 export const prerender = true;
 
 import Layout from '../../layouts/Layout.astro';
-// IMPORTATION CORRIGÉE : Pas de "/" au début, remonte de 3 niveaux
 import { pb } from '../../../backend/backend.mjs';
 
 export async function getStaticPaths() {
-  // On récupère toutes les scènes de PocketBase
-  // 'scene' est le nom de ta collection et 'field' le nom de la relation vers les artistes
   const scenes = await pb.collection('scene').getFullList({
     expand: 'field', 
   });
@@ -39,10 +36,10 @@ const artistesLiees = scene.expand?.field || [];
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         
-        <div class="relative group sticky top-40">
-           <div class="absolute -inset-4 border-2 border-[#9EB27C]/30 rounded-lg transform -rotate-2 pointer-events-none transition-transform group-hover:rotate-0 duration-500"></div>
+        <div class="relative group lg:sticky lg:top-32">
+           <div class="absolute -inset-4 border-2 border-[#9EB27C]/30 rounded-lg transform -rotate-2 pointer-events-none transition-transform group-hover:rotate-0 duration-500 z-0"></div>
            
-           <div class="rounded-2xl overflow-hidden border-4 border-[#E9DCC9] shadow-2xl bg-slate-900 aspect-video lg:aspect-[4/5]">
+           <div class="relative z-10 rounded-2xl overflow-hidden border-4 border-[#E9DCC9] shadow-2xl bg-slate-900 aspect-video lg:aspect-[4/5]">
              <img 
                 src={imageUrl} 
                 alt={scene.nom} 
@@ -97,12 +94,4 @@ const artistesLiees = scene.expand?.field || [];
       </div>
     </div>
   </main>
-
-  <footer class="bg-[#E9DCC9] py-14 px-6 mt-20">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
-       <img src="/imagefooter1.webp" alt="Partenaire 1" class="h-16 w-auto object-contain opacity-80" />
-       <img src="/imagefooter2.webp" alt="Partenaire 2" class="h-12 w-auto object-contain opacity-80" />
-       <img src="/logodark.webp" alt="Logo Dark" class="h-16 w-auto" />
-    </div>
-  </footer>
 </Layout>

@@ -34,7 +34,7 @@ const loopArtistes = [...artistes, ...artistes];
         </p>
       </div>
       
-      <a href="/billetterie" class="bg-[#E9DCC9] text-[#243B55] py-5 px-14 rounded-md shadow-xl text-4xl md:text-6xl transition-transform hover:scale-105 inline-block mt-8" style="font-family: 'Pacifico', cursive;">
+      <a href="/billetterie" class="bg-[#E9DCC9] text-[#243B55] py-5 px-10 md:px-14 rounded-md shadow-xl text-3xl md:text-6xl transition-transform hover:scale-105 inline-block mt-8" style="font-family: 'Pacifico', cursive;">
         Billetterie
       </a>
     </section>
@@ -51,13 +51,12 @@ const loopArtistes = [...artistes, ...artistes];
         </div>
       </div>
 
-      <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="max-w-6xl mx-auto px-4 md:px-6 text-center">
         <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-16">
           {artistes.slice(0, 6).map((artiste) => (
-            /* AJOUT DU LIEN ICI */
             <a 
               href={`/artistes/${artiste.id}`} 
-              class="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[#E9DCC9] shadow-2xl transition-transform hover:scale-110 hover:rotate-3 cursor-pointer block"
+              class="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[#E9DCC9] shadow-2xl transition-transform hover:scale-110 hover:rotate-3 cursor-pointer block shrink-0"
               aria-label={`Voir la page de ${artiste.nom}`}
             >
                <img 
@@ -69,7 +68,7 @@ const loopArtistes = [...artistes, ...artistes];
           ))}
         </div>
 
-        <a href="/programmation" class="bg-[#E9DCC9] text-[#243B55] py-5 px-14 rounded-md shadow-xl text-4xl md:text-6xl transition-transform hover:scale-105 inline-block" style="font-family: 'Pacifico', cursive;">
+        <a href="/programmation" class="bg-[#E9DCC9] text-[#243B55] py-5 px-10 md:px-14 rounded-md shadow-xl text-3xl md:text-6xl transition-transform hover:scale-105 inline-block" style="font-family: 'Pacifico', cursive;">
           Programme
         </a>
       </div>
@@ -80,29 +79,51 @@ const loopArtistes = [...artistes, ...artistes];
     </section>
 
     <section class="flex flex-col items-center text-center space-y-10 py-20 px-6 max-w-5xl mx-auto">
-      <h2 class="text-[#E9DCC9] text-5xl md:text-7xl" style="font-family: 'Pacifico', cursive;">
+      <h2 class="text-[#E9DCC9] text-5xl md:text-7xl leading-tight" style="font-family: 'Pacifico', cursive;">
         Les infos pratiques
       </h2>
       <div class="text-white text-base md:text-lg leading-relaxed font-light text-left space-y-6 max-w-3xl font-sans">
         <p>Le Flying Tap Fest vous ouvre ses portes au cœur du site naturel du Malsaucy...</p>
       </div>
-      <a href="/infos" class="bg-[#E9DCC9] text-[#243B55] py-4 px-10 rounded-md shadow-lg text-2xl md:text-3xl transition-transform hover:scale-105 inline-block font-bold uppercase tracking-widest font-sans">
+      <a href="/infos" class="bg-[#E9DCC9] text-[#243B55] py-4 px-8 md:px-10 rounded-md shadow-lg text-xl md:text-3xl transition-transform hover:scale-105 inline-block font-bold uppercase tracking-widest font-sans text-center">
         Plus d'informations
       </a>
     </section>
 
-    <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
-         <img src="/imagefooter1.webp" alt="FFD" class="h-20 w-auto object-contain" />
-         <img src="/imagefooter2.webp" alt="Belfort" class="h-16 w-auto object-contain" />
-         <img src="/logodark.webp" alt="Logo" class="h-18 w-auto" />
+    <footer class="bg-[#E9DCC9] py-10 md:py-14 px-4 md:px-6 border-t border-[#243B55]/10 mt-auto">
+      <div class="max-w-7xl mx-auto flex flex-row flex-wrap justify-center items-center gap-6 sm:gap-12 md:gap-20">
+         
+         <img 
+           src="/imagefooter1.webp" 
+           alt="FFD" 
+           class="h-10 sm:h-12 md:h-16 w-auto object-contain hover:opacity-80 transition-opacity" 
+         />
+         
+         <img 
+           src="/imagefooter2.webp" 
+           alt="Belfort" 
+           class="h-8 sm:h-10 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity" 
+         />
+         
+         <div class="hidden sm:block h-8 md:h-12 w-[2px] bg-[#243B55]/20"></div>
+
+         <a href="/" class="flex items-center gap-3 group">
+           <img 
+             src="/logodark.webp" 
+             alt="Logo Flying Tap Fest" 
+             class="h-12 sm:h-14 md:h-16 w-auto group-hover:scale-105 transition-transform" 
+           />
+           <span class="text-[#243B55] text-xl md:text-2xl font-bold hidden lg:block" style="font-family: 'Pacifico', cursive;">
+             Flying Tap Fest
+           </span>
+         </a>
+         
       </div>
     </footer>
   </main>
 </Layout>
 
 <script>
-  /* Script du compte à rebours inchangé */
   function startCountdown() {
     const target = new Date("June 6, 2026 00:00:00").getTime();
     setInterval(() => {
