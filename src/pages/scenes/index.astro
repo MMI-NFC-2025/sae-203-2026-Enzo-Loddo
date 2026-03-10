@@ -1,19 +1,15 @@
 ---
 // Chemin : src/pages/scenes/index.astro
 import Layout from '../../layouts/Layout.astro';
+// On remonte de 3 niveaux pour atteindre le backend
+import { pb } from '../../../backend/backend.mjs';
 
-const scenes = [
-  { 
-    id: 'constellation', 
-    nom: 'Scène 1 - La Constellation', 
-    image: '/scene1.webp' 
-  },
-  { 
-    id: 'studio', 
-    nom: 'Scène 2 - Le Studio', 
-    image: '/scene2.webp' 
-  }
-];
+// On récupère les VRAIES scènes de PocketBase
+const scenes = await pb.collection('scene').getFullList({
+    sort: 'created',
+});
+
+const pbUrl = "http://127.0.0.1:8090/api/files/";
 ---
 
 <Layout title="Les Scènes | Flying Tap Fest">
@@ -33,7 +29,7 @@ const scenes = [
           >
             <div class="aspect-video md:aspect-[21/9] overflow-hidden bg-slate-800">
               <img 
-                src={scene.image} 
+                src={`${pbUrl}${scene.collectionId}/${scene.id}/${scene.photo}`} 
                 alt={scene.nom} 
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -53,11 +49,9 @@ const scenes = [
 
   <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
-       <img src="/imagefooter1.webp" alt="Fédération Française de Danse" class="h-16 md:h-20 w-auto object-contain" />
-       <img src="/imagefooter2.webp" alt="Territoire de Belfort" class="h-12 md:h-16 w-auto object-contain" />
-       <div class="flex items-center gap-4">
-         <img src="/logodark.webp" alt="Logo Flying Tap Fest" class="h-16 md:h-18 w-auto" />
-       </div>
+       <img src="/imagefooter1.webp" alt="FFD" class="h-16 md:h-20 w-auto object-contain" />
+       <img src="/imagefooter2.webp" alt="Belfort" class="h-12 md:h-16 w-auto object-contain" />
+       <img src="/logodark.webp" alt="Logo" class="h-16 md:h-18 w-auto" />
     </div>
   </footer>
 </Layout>
