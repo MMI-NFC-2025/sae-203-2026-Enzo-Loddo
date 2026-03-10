@@ -1,0 +1,137 @@
+---
+// src/pages/programmation.astro
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import { getArtistesSortedByName } from '../../backend/backend.mjs';
+
+const artistes = await getArtistesSortedByName();
+const allScenes = [...new Set(artistes.map(a => a.expand?.scene?.nom).filter(Boolean))];
+const pbUrl = "http://127.0.0.1:8090/api/files/";
+---
+
+<Layout title="Programme | Flying Tap Fest">
+  <main class="bg-[#243B55] min-h-screen pt-32 pb-20 px-6 md:px-12">
+    
+    <div class="max-w-5xl mx-auto w-full">
+      
+      <h1 class="text-[#E9DCC9] text-7xl md:text-9xl text-center mb-16" style="font-family: 'Pacifico', cursive;">
+        Programme
+      </h1>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-20">
+        <button class="w-full md:w-auto bg-[#9EB27C] text-[#243B55] font-bold py-4 px-8 rounded-full hover:bg-[#b0c48d] transition-all uppercase tracking-widest text-xs shadow-lg">
+          Télécharger le programme (PDF)
+        </button>
+        
+        <div class="flex flex-wrap justify-center gap-3 w-full md:w-auto">
+            <button id="sortBtn" class="bg-transparent border-2 border-[#E9DCC9] text-[#E9DCC9] font-bold py-3 px-6 rounded-full hover:bg-[#E9DCC9] hover:text-[#243B55] transition-all uppercase tracking-widest text-xs flex items-center gap-2">
+              Nom <span id="sortArrow">A-Z</span>
+            </button>
+            
+            <select id="filterScene" class="bg-[#E9DCC9] text-[#243B55] font-bold py-3 px-6 rounded-full outline-none cursor-pointer uppercase tracking-widest text-xs shadow-md">
+                <option value="all">Toutes les scènes</option>
+                {allScenes.map(scene => (
+                    <option value={scene.toLowerCase()}>{scene}</option>
+                ))}
+            </select>
+        </div>
+      </div>
+
+      <div id="artist-list" class="grid grid-cols-1 gap-12 max-w-3xl mx-auto">
+        {artistes.map((artiste) => {
+          const imageUrl = `${pbUrl}${artiste.collectionId}/${artiste.id}/${artiste.PhotoPrincipale}`;
+          const sceneName = artiste.expand?.scene?.nom || "Scène non définie";
+          
+          return (
+            <div class="artist-card relative mx-auto w-full" data-name={artiste.nom} data-scene={sceneName.toLowerCase()}>
+              <a href={`/artistes/${artiste.id}`} class="group block bg-[#E9DCC9] rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                
+                <div class="aspect-video overflow-hidden relative bg-[#1a2a3a]">
+                  <img 
+                    src={imageUrl} 
+                    alt={artiste.nom} 
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 image-render-auto"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#243B55]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                
+                <div class="p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                  <div class="text-center md:text-left">
+                    <h2 class="text-[#243B55] text-4xl md:text-5xl mb-4 leading-tight" style="font-family: 'Pacifico', cursive;">
+                      {artiste.nom}
+                    </h2>
+                    <p class="text-[#243B55] font-sans text-lg md:text-xl uppercase tracking-[0.15em] font-light">
+                      {artiste.jour || "Samedi 6 juin 2026"}
+                    </p>
+                  </div>
+                  
+                  <div class="flex flex-col items-center md:items-end gap-2 min-w-max">
+                    <span class="text-[#243B55] text-xs font-bold uppercase tracking-widest opacity-60">Scène</span>
+                    <span class="bg-[#243B55] text-[#E9DCC9] px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest shadow-sm">
+                      {sceneName}
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          );
+        })}
+      </div>
+
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const sortBtn = document.getElementById('sortBtn');
+  const sortArrow = document.getElementById('sortArrow');
+  const filterScene = document.getElementById('filterScene');
+  const artistList = document.getElementById('artist-list');
+  const cards = Array.from(document.querySelectorAll('.artist-card'));
+
+  let isAscending = true;
+
+  sortBtn?.addEventListener('click', () => {
+    isAscending = !isAscending;
+    const sorted = cards.sort((a, b) => {
+      const nameA = a.getAttribute('data-name')?.toLowerCase() || "";
+      const nameB = b.getAttribute('data-name')?.toLowerCase() || "";
+      return isAscending ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+    });
+    
+    artistList?.append(...sorted);
+    if (sortArrow) sortArrow.textContent = isAscending ? "A-Z" : "Z-A";
+  });
+
+  filterScene?.addEventListener('change', (e) => {
+    const selected = (e.target as HTMLSelectElement).value;
+    
+    cards.forEach(card => {
+      const scene = card.getAttribute('data-scene');
+      if (selected === 'all' || scene === selected) {
+        (card as HTMLElement).style.display = 'block';
+        (card as HTMLElement).classList.add('animate-fade-in');
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  /* Aide à conserver la netteté des images */
+  .image-render-auto {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+  }
+</style>

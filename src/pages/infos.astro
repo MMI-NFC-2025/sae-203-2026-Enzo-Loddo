@@ -1,0 +1,177 @@
+---
+// src/pages/infos.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Infos Pratiques | Flying Tap Fest">
+  <main class="bg-[#243B55] min-h-screen pt-20 pb-20 px-6 md:px-12">
+    
+    <div class="max-w-3xl mx-auto w-full">
+      
+      <section class="w-full mb-12 rounded-2xl overflow-hidden shadow-2xl">
+        <img 
+          src="/image26.webp" 
+          alt="Scène du festival au Malsaucy" 
+          class="w-full h-auto object-cover max-h-[400px]"
+        />
+      </section>
+
+      <h1 class="text-[#E9DCC9] text-6xl md:text-8xl text-center mb-16" style="font-family: 'Pacifico', cursive;">
+        Infos Pratiques
+      </h1>
+
+      <div class="space-y-16 text-[#E9DCC9] font-sans">
+        
+        <section>
+          <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Tarifs</h2>
+          <ul class="list-disc list-inside space-y-2 text-lg opacity-90">
+            <li>Pass Journée : 12 €</li>
+            <li>Pass 2 Jours : 20 €</li>
+            <li>Gratuit pour les moins de 12 ans</li>
+            <li>Tarif réduit : 8 € (étudiants, demandeurs d'emploi, bénéficiaires RSA — justificatif demandé)</li>
+          </ul>
+          <p class="mt-4 text-sm italic opacity-70">Billetterie disponible en ligne et sur place (paiement CB ou espèces).</p>
+        </section>
+
+        <section>
+          <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Transports</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-bold text-xl mb-2">En voiture</h3>
+              <ul class="list-disc list-inside opacity-90">
+                <li>Parking gratuit sur place</li>
+                <li>Accès via Belfort ou Montbéliard (20 min)</li>
+                <li>Signalétique dédiée "Flying Tap Fest" dès l'entrée du site du Malsaucy</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl mb-2">À vélo</h3>
+              <ul class="list-disc list-inside opacity-90">
+                <li>Park à vélo sécurisé</li>
+                <li>Accès direct par les pistes cyclables du Malsaucy</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl mb-2">En bus / train</h3>
+              <ul class="list-disc list-inside opacity-90">
+                <li>Navettes spéciales depuis la Gare de Belfort toutes les 30 minutes</li>
+                <li>Gare TGV Belfort-Montbéliard à 15 min du site</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Hébergement</h2>
+          <ul class="list-disc list-inside space-y-2 text-lg opacity-90">
+            <li>Large choix d’hébergements à Belfort, Montbéliard et Valdoie</li>          
+           <li>Partenariats avec plusieurs hôtels (réductions Flying Tap Fest sur présentation du billet)
+            Camping</li>
+            <li>Airbnb et locations saisonnières dans les environs</li>
+          <li>Camping du Malsaucy à 5 minutes à pied du festival (emplacements tentes + sanitaires).</li>
+            <li>Emplacements tentes + sanitaires</li>
+            <p class="mt-4 text-sm italic opacity-70">Réservation conseillée.</p>
+
+        </section>
+
+ <section>
+          <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Restauration et boissons</h2>
+          <ul class="list-disc list-inside space-y-2 text-lg opacity-90">
+            <li>Foodtrucks locaux (options végétariennes & véganes)</li>          
+           <li>Bars softs & boissons artisanales</li>
+            <li>Espaces chill ombragés</li>
+          </section>
+
+
+        <section>
+          <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Horaires</h2>
+          <ul class="list-none space-y-2 text-lg opacity-90">
+            <li><span class="font-bold">Ouverture du site :</span> 14h</li>
+            <li><span class="font-bold">Animations & spectacles :</span> 14h30 – 22h30</li>
+            <li><span class="font-bold">Fermeture du site :</span> 00h</li>
+          </ul>
+        </section>
+
+      </div>
+
+      <div class="mt-20 space-y-4">
+        
+        <details class="group bg-[#E9DCC9] rounded-xl overflow-hidden cursor-pointer transition-all shadow-md">
+          <summary class="flex justify-between items-center p-6 text-[#243B55] font-bold text-lg md:text-xl list-none">
+            Comment acheter des billets ?
+            <span class="transform group-open:rotate-180 transition-transform text-2xl">▼</span>
+          </summary>
+          <div class="p-6 pt-0 text-[#243B55]/80 font-sans border-t border-[#243B55]/10">
+            Vous pouvez acheter vos billets directement sur notre page billetterie en ligne ou sur place le jour de l'événement.
+          </div>
+        </details>
+
+        <details class="group bg-[#E9DCC9] rounded-xl overflow-hidden cursor-pointer transition-all shadow-md">
+          <summary class="flex justify-between items-center p-6 text-[#243B55] font-bold text-lg md:text-xl list-none">
+            Y a-t-il une billetterie sur place ?
+            <span class="transform group-open:rotate-180 transition-transform text-2xl">▼</span>
+          </summary>
+          <div class="p-6 pt-0 text-[#243B55]/80 font-sans border-t border-[#243B55]/10">
+            Oui, un guichet est ouvert à l'entrée du site dès 13h30. Nous acceptons les cartes bancaires et les espèces.
+          </div>
+        </details>
+
+        <details class="group bg-[#E9DCC9] rounded-xl overflow-hidden cursor-pointer transition-all shadow-md">
+          <summary class="flex justify-between items-center p-6 text-[#243B55] font-bold text-lg md:text-xl list-none">
+            Le festival est-il accessible aux PMR ?
+            <span class="transform group-open:rotate-180 transition-transform text-2xl">▼</span>
+          </summary>
+          <div class="p-6 pt-0 text-[#243B55]/80 font-sans border-t border-[#243B55]/10">
+            Absolument. Le site du Malsaucy est aménagé pour accueillir les personnes à mobilité réduite. Des espaces réservés sont prévus devant les scènes.
+          </div>
+        </details>
+
+        <details class="group bg-[#E9DCC9] rounded-xl overflow-hidden cursor-pointer transition-all shadow-md">
+          <summary class="flex justify-between items-center p-6 text-[#243B55] font-bold text-lg md:text-xl list-none">
+            Un parking est-il disponible ?
+            <span class="transform group-open:rotate-180 transition-transform text-2xl">▼</span>
+          </summary>
+          <div class="p-6 pt-0 text-[#243B55]/80 font-sans border-t border-[#243B55]/10">
+            Oui, un grand parking gratuit est situé juste à l'entrée du site. Des places réservées sont disponibles pour les personnes en situation de handicap.
+          </div>
+        </details>
+
+        <details class="group bg-[#E9DCC9] rounded-xl overflow-hidden cursor-pointer transition-all shadow-md">
+          <summary class="flex justify-between items-center p-6 text-[#243B55] font-bold text-lg md:text-xl list-none">
+            Les animaux sont-ils autorisés ?
+            <span class="transform group-open:rotate-180 transition-transform text-2xl">▼</span>
+          </summary>
+          <div class="p-6 pt-0 text-[#243B55]/80 font-sans border-t border-[#243B55]/10">
+            Pour des raisons de sécurité et de confort acoustique pour les animaux, seuls les chiens guides sont autorisés sur le site du festival.
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
+       <img src="/imagefooter1.webp" alt="FFD" class="h-20 w-auto object-contain" />
+       <img src="/imagefooter2.webp" alt="Belfort" class="h-16 w-auto object-contain" />
+       <img src="/logodark.webp" alt="Logo" class="h-18 w-auto" />
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* Cacher la flèche par défaut de Safari/Chrome sur summary */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  /* Ajout d'une transition douce pour l'ouverture (Optionnel) */
+  details[open] summary ~ * {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 | Flying Tap Fest">
+  <main class="bg-[#243B55] min-h-screen flex flex-col items-center justify-center px-6 text-center">
+    
+    <div class="mb-10">
+      <div class="w-40 h-40 md:w-52 md:h-52 bg-[#E9DCC9] rounded-full flex items-center justify-center overflow-hidden ">
+        <img src="/logodark.webp" alt="Logo Flying Tap Fest" class="w-4/5 h-auto object-contain block" />
+      </div>
+    </div>
+
+    <h1 class="text-[#E9DCC9] text-7xl md:text-9xl mb-4 font-bold tracking-tighter" style="font-family: 'Pacifico', cursive;">
+      404
+    </h1>
+
+    <p class="text-[#E9DCC9] text-lg md:text-xl font-sans max-w-sm leading-relaxed opacity-90 mb-12">
+      On dirait que cette page n'a pas suivi le rythme.
+    </p>
+
+    <a href="/" class="bg-[#9EB27C] text-[#243B55] text-lg md:text-xl font-bold py-4 px-10 rounded-lg hover:bg-[#8da36d] transition-all shadow-md">
+      Retour à l'accueil
+    </a>
+
+  </main>
+</Layout>
+
+<style>
+  /* Chargement de la police si nécessaire */
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+</style>

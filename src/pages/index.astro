@@ -1,7 +1,8 @@
 ---
 // src/pages/index.astro
+
 import Layout from '../layouts/Layout.astro';
-import Header from '../assets/components/Header.astro';
+import Header from '../assets/components/Header.astro'; 
 import { getArtistesSortedByName } from '../../backend/backend.mjs';
 
 // Récupération des données dynamiques depuis PocketBase
@@ -25,7 +26,7 @@ const loopArtistes = [...artistes, ...artistes];
 
     <section class="flex flex-col items-center text-center space-y-6 py-16 px-4">
       <div class="space-y-4">
-        <p id="countdown" class="text-[#E9DCC9] text-7xl uppercase tracking-widest font-sans font-bold mx-12">
+        <p id="countdown" class="text-white text-4xl md:text-6xl font-light font-sans">
           00j 00h 00m 00s
         </p>
         <p class="text-white text-lg md:text-xl font-extralight uppercase tracking-[0.2em]">
@@ -53,13 +54,18 @@ const loopArtistes = [...artistes, ...artistes];
       <div class="max-w-6xl mx-auto px-6 text-center">
         <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-16">
           {artistes.slice(0, 6).map((artiste) => (
-            <div class="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[#E9DCC9] shadow-2xl transition-transform hover:scale-110">
+            /* AJOUT DU LIEN ICI */
+            <a 
+              href={`/artistes/${artiste.id}`} 
+              class="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[#E9DCC9] shadow-2xl transition-transform hover:scale-110 hover:rotate-3 cursor-pointer block"
+              aria-label={`Voir la page de ${artiste.nom}`}
+            >
                <img 
                  src={`http://127.0.0.1:8090/api/files/${artiste.collectionId}/${artiste.id}/${artiste.PhotoPrincipale}`} 
                  class="w-full h-full object-cover" 
                  alt={artiste.nom} 
                />
-            </div>
+            </a>
           ))}
         </div>
 
@@ -70,7 +76,7 @@ const loopArtistes = [...artistes, ...artistes];
     </section>
 
     <section class="w-full overflow-hidden border-y-4 border-[#E9DCC9]/10">
-      <img src="/image25.webp" class="w-full h-auto object-cover max-h-[500px]" alt="Foule en festival de nuit" />
+      <img src="/image25.webp" class="w-full h-auto object-cover max-h-[500px]" alt="Ambiance" />
     </section>
 
     <section class="flex flex-col items-center text-center space-y-10 py-20 px-6 max-w-5xl mx-auto">
@@ -78,38 +84,25 @@ const loopArtistes = [...artistes, ...artistes];
         Les infos pratiques
       </h2>
       <div class="text-white text-base md:text-lg leading-relaxed font-light text-left space-y-6 max-w-3xl font-sans">
-        <p>Le Flying Tap Fest vous ouvre ses portes au cœur du site naturel du Malsaucy, pour une première édition dédiée à la danse, au mouvement et à la créativité.</p>
-        <p>Parking gratuit sur place, espace vélo sécurisé, restauration locale et zones chill pour admirer les constellations.</p>
+        <p>Le Flying Tap Fest vous ouvre ses portes au cœur du site naturel du Malsaucy...</p>
       </div>
       <a href="/infos" class="bg-[#E9DCC9] text-[#243B55] py-4 px-10 rounded-md shadow-lg text-2xl md:text-3xl transition-transform hover:scale-105 inline-block font-bold uppercase tracking-widest font-sans">
         Plus d'informations
       </a>
     </section>
 
-    <footer class="bg-[#E9DCC9] py-10 px-6 border-t border-[#243B55]/10">
-      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-around items-center gap-10">
-         
-         <div class="flex items-center">
-           <img src="/imagefooter1.webp" alt="Fédération Française de Danse" class="h-16 md:h-20 w-auto object-contain" />
-         </div>
-
-         <div class="flex items-center">
-           <img src="/imagefooter2.webp" alt="Territoire de Belfort" class="h-12 md:h-16 w-auto object-contain" />
-         </div>
-
-         <div class="flex items-center gap-4">
-           <img src="/logodark.webp" alt="Flying Tap Fest" class="h-14 md:h-16 w-auto" />
-          
-         </div>
-
+    <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
+         <img src="/imagefooter1.webp" alt="FFD" class="h-20 w-auto object-contain" />
+         <img src="/imagefooter2.webp" alt="Belfort" class="h-16 w-auto object-contain" />
+         <img src="/logodark.webp" alt="Logo" class="h-18 w-auto" />
       </div>
     </footer>
-
   </main>
 </Layout>
 
 <script>
-  // SCRIPT DU COMPTE À REBOURS
+  /* Script du compte à rebours inchangé */
   function startCountdown() {
     const target = new Date("June 6, 2026 00:00:00").getTime();
     setInterval(() => {
@@ -117,17 +110,14 @@ const loopArtistes = [...artistes, ...artistes];
       const diff = target - now;
       const countdownEl = document.getElementById("countdown");
       if (!countdownEl) return;
-
       if (diff <= 0) {
         countdownEl.innerText = "C'EST PARTI !";
         return;
       }
-
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
       countdownEl.innerText = `${days}j ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
     }, 1000);
   }
@@ -135,7 +125,6 @@ const loopArtistes = [...artistes, ...artistes];
 </script>
 
 <style>
-  /* ANIMATION DU TICKER NOMS */
   @keyframes ticker {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }

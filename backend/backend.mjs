@@ -23,6 +23,7 @@ export async function getScenesSortedByName() {
 export async function getArtistesSortedByName() {
     const records = await pb.collection('artiste').getFullList({
         sort: 'nom',
+        expand: 'scene',
     });
     return records;
 }
