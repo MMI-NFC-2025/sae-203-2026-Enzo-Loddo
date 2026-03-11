@@ -1,0 +1,248 @@
+---
+// src/pages/login.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Espace Festivalier | Flying Tap Fest">
+  <main class="bg-[#243B55] min-h-screen pt-32 pb-20 px-6 md:px-12 flex flex-col items-center justify-center">
+    
+    <section class="w-full text-center mb-12">
+      <h1 class="text-[#E9DCC9] text-5xl md:text-8xl leading-tight" style="font-family: 'Pacifico', cursive;">
+        Espace Festivalier
+      </h1>
+      <p id="page-subtitle" class="text-[#9EB27C] text-lg md:text-xl uppercase tracking-[0.2em] mt-4 font-bold transition-all">
+        Connectez-vous à votre compte
+      </p>
+    </section>
+
+    <section class="w-full max-w-md">
+      <div class="relative w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#E9DCC9] bg-[#1a2a3a] transition-all duration-500">
+        
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#E9DCC9] to-transparent pointer-events-none"></div>
+
+        <div class="relative z-10 p-8 md:p-12 flex flex-col h-full min-h-[450px]">
+          
+          <div id="login-zone" class="flex flex-col flex-1 transition-opacity duration-300">
+            <h2 class="text-[#E9DCC9] text-3xl mb-2 font-bold font-sans">Bienvenue !</h2>
+            <p class="text-[#E9DCC9]/60 mb-8 font-light font-sans text-sm">Saisissez vos identifiants pour accéder à vos billets.</p>
+
+            <form id="login-form" class="flex flex-col gap-5">
+              <div class="flex flex-col gap-2">
+                <label for="login-email" class="text-[#9EB27C] font-bold text-xs uppercase tracking-widest ml-1">Adresse Email</label>
+                <input type="email" id="login-email" required placeholder="festivalier@email.com" class="w-full bg-[#243B55] border-2 border-[#E9DCC9]/20 rounded-xl py-3 px-5 text-[#E9DCC9] placeholder:text-[#E9DCC9]/30 focus:outline-none focus:border-[#9EB27C] transition-colors font-sans"/>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label for="login-password" class="text-[#9EB27C] font-bold text-xs uppercase tracking-widest ml-1">Mot de passe</label>
+                <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-[#243B55] border-2 border-[#E9DCC9]/20 rounded-xl py-3 px-5 text-[#E9DCC9] placeholder:text-[#E9DCC9]/30 focus:outline-none focus:border-[#9EB27C] transition-colors font-sans"/>
+              </div>
+
+              <p id="login-error" class="hidden text-white font-sans text-sm bg-red-500/80 p-3 rounded-lg text-center font-bold">Identifiants incorrects.</p>
+
+              <button type="submit" class="w-full mt-2 bg-[#E9DCC9] hover:bg-white text-[#243B55] font-bold uppercase tracking-widest text-sm py-4 rounded-xl transition-all shadow-lg hover:-translate-y-1">
+                Se connecter
+              </button>
+            </form>
+
+            <div class="mt-6 text-center">
+              <button id="show-register-btn" class="text-[#E9DCC9]/70 hover:text-[#9EB27C] text-sm font-sans transition-colors underline-offset-4 hover:underline">
+                Pas encore de compte ? S'inscrire
+              </button>
+            </div>
+          </div>
+
+          <div id="register-zone" class="hidden flex-col flex-1 transition-opacity duration-300">
+            <h2 class="text-[#E9DCC9] text-3xl mb-2 font-bold font-sans">Rejoignez-nous</h2>
+            <p class="text-[#E9DCC9]/60 mb-6 font-light font-sans text-sm">Créez votre compte en quelques secondes.</p>
+
+            <form id="register-form" class="flex flex-col gap-4">
+              <div class="flex flex-col gap-1">
+                <label for="reg-name" class="text-[#9EB27C] font-bold text-[10px] uppercase tracking-widest ml-1">Nom / Pseudo</label>
+                <input type="text" id="reg-name" required placeholder="Ex: Jean Tap" class="w-full bg-[#243B55] border-2 border-[#E9DCC9]/20 rounded-xl py-3 px-5 text-[#E9DCC9] placeholder:text-[#E9DCC9]/30 focus:outline-none focus:border-[#9EB27C] transition-colors font-sans text-sm"/>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="reg-email" class="text-[#9EB27C] font-bold text-[10px] uppercase tracking-widest ml-1">Adresse Email</label>
+                <input type="email" id="reg-email" required placeholder="festivalier@email.com" class="w-full bg-[#243B55] border-2 border-[#E9DCC9]/20 rounded-xl py-3 px-5 text-[#E9DCC9] placeholder:text-[#E9DCC9]/30 focus:outline-none focus:border-[#9EB27C] transition-colors font-sans text-sm"/>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="reg-password" class="text-[#9EB27C] font-bold text-[10px] uppercase tracking-widest ml-1">Mot de passe (8 carac. min)</label>
+                <input type="password" id="reg-password" required minlength="8" placeholder="••••••••" class="w-full bg-[#243B55] border-2 border-[#E9DCC9]/20 rounded-xl py-3 px-5 text-[#E9DCC9] placeholder:text-[#E9DCC9]/30 focus:outline-none focus:border-[#9EB27C] transition-colors font-sans text-sm"/>
+              </div>
+
+              <div class="flex flex-col gap-1">
+                <label for="reg-password-confirm" class="text-[#9EB27C] font-bold text-[10px] uppercase tracking-widest ml-1">Confirmer le mot de passe</label>
+                <input type="password" id="reg-password-confirm" required minlength="8" placeholder="••••••••" class="w-full bg-[#243B55] border-2 border-[#E9DCC9]/20 rounded-xl py-3 px-5 text-[#E9DCC9] placeholder:text-[#E9DCC9]/30 focus:outline-none focus:border-[#9EB27C] transition-colors font-sans text-sm"/>
+              </div>
+
+              <p id="register-error" class="hidden text-white font-sans text-sm bg-red-500/80 p-3 rounded-lg text-center font-bold"></p>
+
+              <button type="submit" class="w-full mt-2 bg-[#9EB27C] hover:bg-[#b0c48d] text-[#243B55] font-bold uppercase tracking-widest text-sm py-4 rounded-xl transition-all shadow-lg hover:-translate-y-1">
+                Créer mon compte
+              </button>
+            </form>
+
+            <div class="mt-6 text-center">
+              <button id="show-login-btn" class="text-[#E9DCC9]/70 hover:text-[#9EB27C] text-sm font-sans transition-colors underline-offset-4 hover:underline">
+                Déjà un compte ? Se connecter
+              </button>
+            </div>
+          </div>
+
+          <div id="logout-zone" class="hidden flex-col items-center justify-center text-center py-6 h-full flex-1">
+            <div class="w-20 h-20 bg-[#9EB27C]/20 rounded-full flex items-center justify-center mb-6 border-2 border-[#9EB27C]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#9EB27C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            
+            <h2 id="welcome-name" class="text-[#E9DCC9] font-bold text-3xl mb-2 font-sans">Connexion réussie</h2>
+            <p class="text-[#E9DCC9]/70 mb-10 font-sans font-light">Vous êtes connecté à l'espace Flying Tap Fest.</p>
+            
+            <button id="logout-btn" class="w-full bg-transparent border-2 border-[#E9DCC9] hover:bg-[#E9DCC9] text-[#E9DCC9] hover:text-[#243B55] font-bold uppercase tracking-widest text-sm py-4 rounded-xl transition-colors">
+              Se déconnecter
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  import { pb } from '../../backend/backend.mjs';
+
+  // Éléments du DOM
+  const loginZone = document.getElementById('login-zone');
+  const registerZone = document.getElementById('register-zone');
+  const logoutZone = document.getElementById('logout-zone');
+  
+  const loginForm = document.getElementById('login-form');
+  const registerForm = document.getElementById('register-form');
+  
+  const showRegisterBtn = document.getElementById('show-register-btn');
+  const showLoginBtn = document.getElementById('show-login-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+  
+  const loginError = document.getElementById('login-error');
+  const registerError = document.getElementById('register-error');
+  const pageSubtitle = document.getElementById('page-subtitle');
+  const welcomeName = document.getElementById('welcome-name');
+
+  // --- GESTION DE L'AFFICHAGE ---
+  function updateUI() {
+    const isConnected = pb.authStore.isValid;
+    
+    if (isConnected) {
+      // Connecté
+      loginZone?.classList.add('hidden');
+      registerZone?.classList.add('hidden');
+      logoutZone?.classList.remove('hidden');
+      logoutZone?.classList.add('flex');
+      if (pageSubtitle) pageSubtitle.innerText = "Votre espace personnel";
+      if (welcomeName) welcomeName.innerText = `Bonjour ${pb.authStore.model?.name || ''} !`;
+    } else {
+      // Déconnecté (Affiche Login par défaut)
+      logoutZone?.classList.add('hidden');
+      logoutZone?.classList.remove('flex');
+      registerZone?.classList.add('hidden');
+      registerZone?.classList.remove('flex');
+      loginZone?.classList.remove('hidden');
+      loginZone?.classList.add('flex');
+      if (pageSubtitle) pageSubtitle.innerText = "Connectez-vous à votre compte";
+    }
+  }
+
+  // Bascule vers Inscription
+  showRegisterBtn?.addEventListener('click', () => {
+    loginZone?.classList.add('hidden');
+    loginZone?.classList.remove('flex');
+    registerZone?.classList.remove('hidden');
+    registerZone?.classList.add('flex');
+    if (pageSubtitle) pageSubtitle.innerText = "Créez votre profil festivalier";
+  });
+
+  // Bascule vers Connexion
+  showLoginBtn?.addEventListener('click', () => {
+    registerZone?.classList.add('hidden');
+    registerZone?.classList.remove('flex');
+    loginZone?.classList.remove('hidden');
+    loginZone?.classList.add('flex');
+    if (pageSubtitle) pageSubtitle.innerText = "Connectez-vous à votre compte";
+  });
+
+  // Initialisation au chargement
+  updateUI();
+
+  // --- LOGIQUE DE CONNEXION ---
+  loginForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (document.getElementById('login-email') as HTMLInputElement).value;
+    const password = (document.getElementById('login-password') as HTMLInputElement).value;
+    
+    try {
+      await pb.collection('users').authWithPassword(email, password);
+      loginError?.classList.add('hidden');
+      updateUI(); 
+    } catch (error) {
+      console.error(error);
+      loginError?.classList.remove('hidden');
+    }
+  });
+
+  // --- LOGIQUE D'INSCRIPTION ---
+  registerForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = (document.getElementById('reg-name') as HTMLInputElement).value;
+    const email = (document.getElementById('reg-email') as HTMLInputElement).value;
+    const password = (document.getElementById('reg-password') as HTMLInputElement).value;
+    const passwordConfirm = (document.getElementById('reg-password-confirm') as HTMLInputElement).value;
+    
+    if (registerError) registerError.classList.add('hidden');
+
+    // Vérification basique des mots de passe
+    if (password !== passwordConfirm) {
+      if (registerError) {
+        registerError.innerText = "Les mots de passe ne correspondent pas.";
+        registerError.classList.remove('hidden');
+      }
+      return;
+    }
+
+    try {
+      // 1. Créer l'utilisateur dans PocketBase
+      const data = {
+        "email": email,
+        "emailVisibility": true,
+        "password": password,
+        "passwordConfirm": passwordConfirm,
+        "name": name
+      };
+      await pb.collection('users').create(data);
+
+      // 2. Connecter l'utilisateur automatiquement après la création
+      await pb.collection('users').authWithPassword(email, password);
+      
+      updateUI(); 
+    } catch (error: any) {
+      console.error(error);
+      if (registerError) {
+        // Personnalisation du message d'erreur (souvent dû à un email déjà utilisé)
+        registerError.innerText = "Erreur : Cet email est peut-être déjà utilisé ou le mot de passe est trop court.";
+        registerError.classList.remove('hidden');
+      }
+    }
+  });
+
+  // --- LOGIQUE DE DÉCONNEXION ---
+  logoutBtn?.addEventListener('click', () => {
+    pb.authStore.clear(); 
+    updateUI(); 
+    
+    // Vider les champs
+    (document.getElementById('login-form') as HTMLFormElement)?.reset();
+    (document.getElementById('register-form') as HTMLFormElement)?.reset();
+  });
+</script>

@@ -1,5 +1,5 @@
 ---
-// src/components/Header.astro
+// src/assets/components/Header.astro
 ---
 
 <header class="bg-[#ECD8BD] py-4 px-6 md:px-12 sticky top-0 z-50 shadow-sm border-b border-[#2C4258]/10 relative">
@@ -9,11 +9,21 @@
       <img src="/logodark.webp" alt="Logo Officiel du Festival" class="h-10 md:h-12 w-auto block" />
     </a>
 
-    <button id="menu-btn" class="text-[#2C4258] hover:opacity-70 transition-transform hover:scale-110 focus:outline-none relative z-50" aria-label="Ouvrir le menu">
-      <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
+    <div class="flex items-center gap-4 md:gap-6 relative z-50">
+      
+      <a href="/login" class="text-[#2C4258] hover:opacity-70 transition-transform hover:scale-110 focus:outline-none" aria-label="Espace Festivalier">
+        <svg class="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+      </a>
+
+      <button id="menu-btn" class="text-[#2C4258] hover:opacity-70 transition-transform hover:scale-110 focus:outline-none" aria-label="Ouvrir le menu">
+        <svg class="w-10 h-10 md:w-12 md:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      
+    </div>
     
   </div>
 </header>
@@ -40,10 +50,7 @@
   </nav>
 
   <div class="w-full flex flex-col items-center pb-8 flex-shrink-0">
-    
-    <h3 class="text-[#ECD8BD] text-xl md:text-2xl font-bold mb-4 tracking-widest uppercase">
-      Contact
-    </h3>
+    <h3 class="text-[#ECD8BD] text-xl md:text-2xl font-bold mb-4 tracking-widest uppercase">Contact</h3>
     
     <div class="flex flex-col items-center space-y-2 text-[#ECD8BD] text-base md:text-lg font-light mb-8 text-center">
       <a href="mailto:contact@flyingtapfest.fr" class="hover:text-white transition-colors">contact@flyingtapfest.fr</a>
@@ -66,31 +73,26 @@
         <svg class="w-8 h-8 md:w-10 md:h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/></svg>
       </a>
     </div>
-
   </div>
   
 </div>
 
 <script>
-  // On s'assure que le script s'exécute bien dans Astro
   const initMenu = () => {
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
     const fullscreenMenu = document.getElementById('fullscreen-menu');
 
-    // Ouverture
     menuBtn?.addEventListener('click', () => {
       fullscreenMenu?.classList.remove('translate-x-full');
-      document.body.style.overflow = 'hidden'; // Bloque le défilement de la page derrière
+      document.body.style.overflow = 'hidden'; 
     });
 
-    // Fermeture
     closeBtn?.addEventListener('click', () => {
       fullscreenMenu?.classList.add('translate-x-full');
-      document.body.style.overflow = ''; // Réactive le défilement
+      document.body.style.overflow = ''; 
     });
   };
 
-  // Lance le script au chargement
   document.addEventListener('DOMContentLoaded', initMenu);
 </script>
