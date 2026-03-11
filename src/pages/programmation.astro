@@ -1,10 +1,10 @@
 ---
-// src/pages/programmation.astro
+// --- IMPORTS & CONFIG ---
 export const prerender = true;
-
 import Layout from '../layouts/Layout.astro';
 import { getArtistesSortedByName } from '../../backend/backend.mjs';
 
+// --- DATA FETCHING ---
 const artistes = await getArtistesSortedByName();
 const allScenes = [...new Set(artistes.map(a => a.expand?.scene?.nom).filter(Boolean))];
 const pbUrl = "http://127.0.0.1:8090/api/files/";
@@ -12,7 +12,6 @@ const pbUrl = "http://127.0.0.1:8090/api/files/";
 
 <Layout title="Programme | Flying Tap Fest">
   <main class="bg-[#243B55] min-h-screen pt-32 pb-20 px-6 md:px-12">
-    
     <div class="max-w-5xl mx-auto w-full">
       
       <h1 class="text-[#E9DCC9] text-7xl md:text-9xl text-center mb-16" style="font-family: 'Pacifico', cursive;">
@@ -25,16 +24,16 @@ const pbUrl = "http://127.0.0.1:8090/api/files/";
         </button>
         
         <div class="flex flex-wrap justify-center gap-3 w-full md:w-auto">
-            <button id="sortBtn" class="bg-transparent border-2 border-[#E9DCC9] text-[#E9DCC9] font-bold py-3 px-6 rounded-full hover:bg-[#E9DCC9] hover:text-[#243B55] transition-all uppercase tracking-widest text-xs flex items-center gap-2">
-              Nom <span id="sortArrow">A-Z</span>
-            </button>
-            
-            <select id="filterScene" class="bg-[#E9DCC9] text-[#243B55] font-bold py-3 px-6 rounded-full outline-none cursor-pointer uppercase tracking-widest text-xs shadow-md">
-                <option value="all">Toutes les scènes</option>
-                {allScenes.map(scene => (
-                    <option value={scene.toLowerCase()}>{scene}</option>
-                ))}
-            </select>
+          <button id="sortBtn" class="bg-transparent border-2 border-[#E9DCC9] text-[#E9DCC9] font-bold py-3 px-6 rounded-full hover:bg-[#E9DCC9] hover:text-[#243B55] transition-all uppercase tracking-widest text-xs flex items-center gap-2">
+            Nom <span id="sortArrow">A-Z</span>
+          </button>
+          
+          <select id="filterScene" class="bg-[#E9DCC9] text-[#243B55] font-bold py-3 px-6 rounded-full outline-none cursor-pointer uppercase tracking-widest text-xs shadow-md">
+            <option value="all">Toutes les scènes</option>
+            {allScenes.map(scene => (
+              <option value={scene.toLowerCase()}>{scene}</option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -81,9 +80,6 @@ const pbUrl = "http://127.0.0.1:8090/api/files/";
       </div>
 
     </div>
-
-
-    
   </main>
 </Layout>
 
@@ -132,7 +128,6 @@ const pbUrl = "http://127.0.0.1:8090/api/files/";
     animation: fadeIn 0.5s ease-out forwards;
   }
   
-  /* Aide à conserver la netteté des images */
   .image-render-auto {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: auto;

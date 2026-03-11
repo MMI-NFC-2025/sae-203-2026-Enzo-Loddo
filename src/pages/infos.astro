@@ -1,5 +1,5 @@
 ---
-// src/pages/infos.astro
+// --- IMPORTS ---
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -65,23 +65,21 @@ import Layout from '../layouts/Layout.astro';
           <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Hébergement</h2>
           <ul class="list-disc list-inside space-y-2 text-lg opacity-90">
             <li>Large choix d’hébergements à Belfort, Montbéliard et Valdoie</li>          
-           <li>Partenariats avec plusieurs hôtels (réductions Flying Tap Fest sur présentation du billet)
-            Camping</li>
+            <li>Partenariats avec plusieurs hôtels (réductions Flying Tap Fest sur présentation du billet)</li>
             <li>Airbnb et locations saisonnières dans les environs</li>
-          <li>Camping du Malsaucy à 5 minutes à pied du festival (emplacements tentes + sanitaires).</li>
-            <li>Emplacements tentes + sanitaires</li>
-            <p class="mt-4 text-sm italic opacity-70">Réservation conseillée.</p>
-
+            <li>Camping du Malsaucy à 5 minutes à pied du festival (emplacements tentes + sanitaires)</li>
+          </ul>
+          <p class="mt-4 text-sm italic opacity-70">Réservation conseillée.</p>
         </section>
 
- <section>
+        <section>
           <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Restauration et boissons</h2>
           <ul class="list-disc list-inside space-y-2 text-lg opacity-90">
             <li>Foodtrucks locaux (options végétariennes & véganes)</li>          
-           <li>Bars softs & boissons artisanales</li>
+            <li>Bars softs & boissons artisanales</li>
             <li>Espaces chill ombragés</li>
-          </section>
-
+          </ul>
+        </section>
 
         <section>
           <h2 class="text-4xl mb-6" style="font-family: 'Pacifico', cursive;">Horaires</h2>
@@ -149,23 +147,13 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </main>
-
-  <footer class="bg-[#E9DCC9] py-14 px-6 border-t border-[#243B55]/10">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32">
-       <img src="/imagefooter1.webp" alt="FFD" class="h-20 w-auto object-contain" />
-       <img src="/imagefooter2.webp" alt="Belfort" class="h-16 w-auto object-contain" />
-       <img src="/logodark.webp" alt="Logo" class="h-18 w-auto" />
-    </div>
-  </footer>
 </Layout>
 
 <style>
-  /* Cacher la flèche par défaut de Safari/Chrome sur summary */
   summary::-webkit-details-marker {
     display: none;
   }
   
-  /* Ajout d'une transition douce pour l'ouverture (Optionnel) */
   details[open] summary ~ * {
     animation: slideDown 0.3s ease-out;
   }

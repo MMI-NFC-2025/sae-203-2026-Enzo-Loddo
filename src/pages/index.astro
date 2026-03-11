@@ -1,14 +1,10 @@
 ---
-// src/pages/index.astro
-
+// --- IMPORTS ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../assets/components/Header.astro'; 
 import { getArtistesSortedByName } from '../../backend/backend.mjs';
 
-// Récupération des données dynamiques depuis PocketBase
+// --- DATA FETCHING ---
 const artistes = await getArtistesSortedByName();
-
-// On double la liste pour l'effet de défilement infini fluide des noms
 const loopArtistes = [...artistes, ...artistes];
 ---
 
@@ -90,55 +86,34 @@ const loopArtistes = [...artistes, ...artistes];
       </a>
     </section>
 
-    <footer class="bg-[#E9DCC9] py-10 md:py-14 px-4 md:px-6 border-t border-[#243B55]/10 mt-auto">
-      <div class="max-w-7xl mx-auto flex flex-row flex-wrap justify-center items-center gap-6 sm:gap-12 md:gap-20">
-         
-         <img 
-           src="/imagefooter1.webp" 
-           alt="FFD" 
-           class="h-10 sm:h-12 md:h-16 w-auto object-contain hover:opacity-80 transition-opacity" 
-         />
-         
-         <img 
-           src="/imagefooter2.webp" 
-           alt="Belfort" 
-           class="h-8 sm:h-10 md:h-14 w-auto object-contain hover:opacity-80 transition-opacity" 
-         />
-         
-         <div class="hidden sm:block h-8 md:h-12 w-[2px] bg-[#243B55]/20"></div>
-
-         <a href="/" class="flex items-center gap-3 group">
-           <img 
-             src="/logodark.webp" 
-             alt="Logo Flying Tap Fest" 
-             class="h-12 sm:h-14 md:h-16 w-auto group-hover:scale-105 transition-transform" 
-           />
-         </a>
-         
-      </div>
-    </footer>
   </main>
 </Layout>
 
 <script>
   function startCountdown() {
     const target = new Date("June 6, 2026 00:00:00").getTime();
+    
     setInterval(() => {
       const now = new Date().getTime();
       const diff = target - now;
       const countdownEl = document.getElementById("countdown");
+      
       if (!countdownEl) return;
+      
       if (diff <= 0) {
         countdownEl.innerText = "C'EST PARTI !";
         return;
       }
+      
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
       countdownEl.innerText = `${days}j ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
     }, 1000);
   }
+  
   startCountdown();
 </script>
 
