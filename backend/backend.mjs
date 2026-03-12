@@ -1,7 +1,7 @@
 
 import PocketBase from 'pocketbase';
 
-export const pb = new PocketBase('http://flyingtapfest.loddo.optimiseus.fr');
+export const pb = new PocketBase('https://flyingtapfest.loddo.optimiseus.fr');
 
 export async function getArtistesSortedByDate() {
     return await pb.collection('artiste').getFullList({ sort: 'DateRepresentation' });

@@ -2,4 +2,17 @@
 - Nom: Loddo
 - Prénom: Enzo
 - url: 
+-URL Pocketbase: http://127.0.0.1:8090/_/#/collections?collection=_pb_users_auth_&filter=&sort=-%40rowid
+
+
+Améliorations: 
+-Modification du menu de la page 
+-Affichage du carousel infini à l'index
+-Affichage différent des artistes a l'index
+-Ajout de filtres pour les concert (scénes, A-Z ,)
+-Modification de la page artiste
+-Création de la page pour les scénes 
+-Ajout d'une page de connexion
+-Ajout d'une page création d'un compte
+-Ajout d'un logo de compte dans le header 
 
